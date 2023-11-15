@@ -1,5 +1,4 @@
 import tkinter
-import sqlite3
 
 class App:
     def __init__(self):
