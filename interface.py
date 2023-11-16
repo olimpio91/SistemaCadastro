@@ -1,82 +1,113 @@
-import tkinter
+from tkinter import *
 import usuarios
 
 
 class App:
-    def __init__(self):
-
-        self.root = tkinter.Tk()
-        self.root.title('Title')
-        self.root.geometry('300x220')
-
-        self.frame = tkinter.Frame(self.root)
+    def __init__(self, root = None):
+        self.frame = Frame(root)
         self.frame.pack()
 
-        self.label = tkinter.Label(self.frame, text='LOGIN',font=('Roboto',20) )
-        self.label.pack()
-
-        self.entry_user = tkinter.Entry(self.frame)
-        self.entry_user.pack()
-
-        self.entry_password = tkinter.Entry(self.frame)
-        self.entry_password.pack()
-
-        self.button_enter = tkinter.Button(self.frame, text='ENTER')
-        self.button_enter.pack(side='left')
-
-        self.button_cadastrar = tkinter.Button(self.frame, text='CADASTRAR', command= InterfaceCadastramento)
-        self.button_cadastrar.pack(side='right')
-
-        self.root.mainloop()
-    
-
-class InterfaceCadastramento:
-    def __init__(self):
-
-        self.root = tkinter.Tk()
-        self.root.geometry('300x220')
-
-        self.frame1 = tkinter.Frame(self.root)
-        self.frame2 = tkinter.Frame(self.root)
-        self.frame3 = tkinter.Frame(self.root)
-        self.frame4 = tkinter.Frame(self.root)
-        self.frame5 = tkinter.Frame(self.root)
-
-        self.frame1.pack()
-        self.frame2.pack()
-        self.frame3.pack()
-        self.frame4.pack()
-        self.frame5.pack()
+        self.frame1 = Frame(self.frame)
+        self.frame1.pack(padx=(10,0))
         
-        self.label_title = tkinter.Label(self.frame1, text='REGISTER', font=('Roboto',20))
+        self.frame2 = Frame(self.frame)
+        self.frame2.pack(pady=10, padx=(0,25))
+
+        self.frame3 = Frame(self.frame)
+        self.frame3.pack(padx=(0,60))
+
+        self.frame4 = Frame(self.frame)
+        self.frame4.pack(pady=(10,0))
+        
+        self.label_title = Label(self.frame1, text='LOGIN', font=('Roboto', 25))
         self.label_title.pack()
 
-        self.label_text_entrey_user = tkinter.Label(self.frame2, text='USER')
-        self.label_text_entrey_user.pack()
+        self.label_text_entry_user = Label(self.frame2, text='USER')
+        self.label_text_entry_user.pack(side='left')
 
-        self.entry_user = tkinter.Entry(self.frame3,)
-        self.entry_user.pack()
+        self.user_entry = Entry(self.frame2, width=25)
+        self.user_entry.pack()
 
-        self.label_text_entrey_password = tkinter.Label(self.frame4, text='PASSWORD')
-        self.label_text_entrey_password.pack()
+        self.label_title_password_entry = Label(self.frame3, text='PASSWORD')
+        self.label_title_password_entry.pack(side='left')
 
-        self.entry_password = tkinter.Entry(self.frame5)
+        self.entry_password = Entry(self.frame3, width=25)
         self.entry_password.pack()
 
-        self.button_cadastrar = tkinter.Button(self.frame5, text='ENTER',command=Betwen)
-        self.button_cadastrar.pack()
+        self.enter_button = Button(self.frame4, text='ENTER')
+        self.enter_button.pack(side=LEFT)
+
+        self.register_button = Button(self.frame4, text='REGISTER', command=self.page_register)
+        self.register_button.pack(side=LEFT)
+
+    #troca de pagina
+    def page_register(self):
+
+        self.frame.pack_forget()
+
+        self.frame_pageregister = Frame(root)
+        self.frame_pageregister.pack()
+
+        self.frame1_pageregister = Frame(self.frame_pageregister)
+        self.frame1_pageregister.pack()
+
+        self.frame2_pageregister = Frame(self.frame_pageregister)
+        self.frame2_pageregister.pack()
+
+        self.frame3_pageregister = Frame(self.frame_pageregister)
+        self.frame3_pageregister.pack()
         
-        self.root.mainloop()
+        self.frame4_pageregister = Frame(self.frame_pageregister)
+        self.frame4_pageregister.pack()
 
+        self.frame5_pageregister = Frame(self.frame_pageregister)
+        self.frame5_pageregister.pack()
 
-class Betwen:
-    def __init__(self):
-        # pegar o usuario e senha da class InterfaceCadastramnto
+        self.frame6_pageregister = Frame(self.frame_pageregister)
+        self.frame6_pageregister.pack()
         
-        #self.user = 
-        #self.password = 
 
-        c = usuarios
-        c.Users.insert_into(self.user, self.password)
+        #widgets
+        self.label_title_pgr = Label(self.frame1_pageregister, text='REGISTER', font=('Roboto', 25))
+        self.label_title_pgr.pack()
 
-interface = App()
+        self.labeltext_entry_firstname_pgr = Label(self.frame2_pageregister, text='FIRST NAME')
+        self.labeltext_entry_firstname_pgr.pack(side=LEFT)
+
+        self.entry_firstname_pgr = Entry(self.frame2_pageregister, width=30)
+        self.entry_firstname_pgr.pack(padx=(0,40),pady=(5,5))
+
+        self.labeltext_lastname_pgr = Label(self.frame3_pageregister, text='LAST NAME')
+        self.labeltext_lastname_pgr.pack(side=LEFT)
+
+        self.entry_lastname_pgr = Entry(self.frame3_pageregister, width=30)
+        self.entry_lastname_pgr.pack(padx=(0,37),pady=(5,5))
+
+        self.labeltext_user_pgr = Label(self.frame4_pageregister, text='USER')
+        self.labeltext_user_pgr.pack(side=LEFT)
+
+        self.entry_user_pgr = Entry(self.frame4_pageregister, width=30)
+        self.entry_user_pgr.pack(padx=(0,2),pady=(5,5))
+
+        self.labeltext_password_pgr = Label(self.frame5_pageregister, text='PASSWORD')
+        self.labeltext_password_pgr.pack(side=LEFT)
+
+        self.entry_password_pgr = Entry(self.frame5_pageregister, width=30)
+        self.entry_password_pgr.pack(padx=(0,37),pady=(5,5))
+
+        self.enter_button_pgr = Button(self.frame6_pageregister, text='ENTER')
+        self.enter_button_pgr.pack(side=LEFT, padx=(30,0))
+    
+        self.homepage = Button(self.frame6_pageregister, text='HOME PAGE', command=self.home_page)
+        self.homepage.pack(side=LEFT)
+    
+    def home_page(self):
+
+        self.frame_pageregister.pack_forget()
+        App()
+
+
+root = Tk()
+root.geometry('300x220')
+App(root)
+root.mainloop()
