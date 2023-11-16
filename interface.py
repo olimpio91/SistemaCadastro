@@ -1,7 +1,10 @@
 import tkinter
+import usuarios
+
 
 class App:
     def __init__(self):
+
         self.root = tkinter.Tk()
         self.root.title('Title')
         self.root.geometry('300x220')
@@ -60,12 +63,20 @@ class InterfaceCadastramento:
         self.entry_password = tkinter.Entry(self.frame5)
         self.entry_password.pack()
 
-        self.button_cadastrar = tkinter.Button(self.frame5, text='ENTER')
+        self.button_cadastrar = tkinter.Button(self.frame5, text='ENTER',command=Betwen)
         self.button_cadastrar.pack()
         
         self.root.mainloop()
 
 
+class Betwen:
+    def __init__(self):
+        # pegar o usuario e senha da class InterfaceCadastramnto
+        
+        #self.user = 
+        #self.password = 
 
+        c = usuarios
+        c.Users.insert_into(self.user, self.password)
 
 interface = App()
