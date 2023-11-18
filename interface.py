@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import messagebox
 import usuarios
 
 
@@ -95,7 +96,7 @@ class App:
         self.entry_password_pgr = Entry(self.frame5_pageregister, width=30)
         self.entry_password_pgr.pack(padx=(0,37),pady=(5,5))
 
-        self.enter_button_pgr = Button(self.frame6_pageregister, text='ENTER')
+        self.enter_button_pgr = Button(self.frame6_pageregister, text='ENTER', command=self.insert_user)
         self.enter_button_pgr.pack(side=LEFT, padx=(30,0))
     
         self.homepage = Button(self.frame6_pageregister, text='HOME PAGE', command=self.home_page)
@@ -105,6 +106,17 @@ class App:
 
         self.frame_pageregister.pack_forget()
         App()
+    
+    def insert_user(self):
+        firstname = self.entry_firstname_pgr.get()
+        lastname = self.entry_lastname_pgr.get()
+        user = self.entry_user_pgr.get()
+        password = self.entry_password_pgr.get()
+        
+        i = usuarios.Users()
+        i.insert_into(firstname,lastname,user,password)
+
+        self.warning = messagebox.showinfo(title='Registrado', message='Você foi registrado com sucesso!')
 
 
 root = Tk()

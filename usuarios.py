@@ -5,8 +5,9 @@ class Users:
 
         self.c = database.DataBase()
 
-    def insert_into (self,usuario, senha):
+    def insert_into (self, FirstName, LastName, User, PassWorld):
         
-        self.c.cur.execute(f"INSERT INTO Registered (User, Password) VALUES({usuario},{senha})")
+        self.c.cur.execute("INSERT INTO Registered (FirstName, LastName, User, Password) VALUES(?,?,?,?)",(FirstName,LastName,User,PassWorld))
         self.c.conn.commit()
         self.c.conn.close()
+    
