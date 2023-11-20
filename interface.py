@@ -4,6 +4,7 @@ import usuarios
 
 
 class App:
+
     def __init__(self, root = None):
         self.frame = Frame(root)
         self.frame.pack()
@@ -35,14 +36,14 @@ class App:
         self.entry_password = Entry(self.frame3, width=25)
         self.entry_password.pack()
 
-        self.enter_button = Button(self.frame4, text='ENTER')
+        self.enter_button = Button(self.frame4, text='ENTER',command=self.message)
         self.enter_button.pack(side=LEFT)
 
         self.register_button = Button(self.frame4, text='REGISTER', command=self.page_register)
         self.register_button.pack(side=LEFT)
 
 
-    #troca de pagina
+    #eventos
     def page_register(self):
 
         self.frame.pack_forget()
@@ -102,6 +103,7 @@ class App:
     
         self.homepage = Button(self.frame6_pageregister, text='HOME PAGE', command=self.home_page)
         self.homepage.pack(side=LEFT)
+
     
 
     def home_page(self):
@@ -126,9 +128,11 @@ class App:
         #volta para pagina principal
         self.home_page = App()
         self.home_page
-    
 
-
+    def message(self):
+        c = usuarios.Users()
+        c.check(user_entry=self.user_entry, password_entry=self.entry_password)
+        
 root = Tk()
 root.geometry('300x220')
 App(root)
