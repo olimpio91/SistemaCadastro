@@ -41,6 +41,7 @@ class App:
         self.register_button = Button(self.frame4, text='REGISTER', command=self.page_register)
         self.register_button.pack(side=LEFT)
 
+
     #troca de pagina
     def page_register(self):
 
@@ -102,21 +103,30 @@ class App:
         self.homepage = Button(self.frame6_pageregister, text='HOME PAGE', command=self.home_page)
         self.homepage.pack(side=LEFT)
     
+
     def home_page(self):
 
         self.frame_pageregister.pack_forget()
         App()
     
+
     def insert_user(self):
-        firstname = self.entry_firstname_pgr.get()
-        lastname = self.entry_lastname_pgr.get()
-        user = self.entry_user_pgr.get()
-        password = self.entry_password_pgr.get()
-        
+
+        self.firstname = self.entry_firstname_pgr.get()
+        self.lastname = self.entry_lastname_pgr.get()
+        self.user = self.entry_user_pgr.get()
+        self.password = self.entry_password_pgr.get()
+
         i = usuarios.Users()
-        i.insert_into(firstname,lastname,user,password)
+        i.insert_into(self.firstname,self.lastname,self.user,self.password)
 
         self.warning = messagebox.showinfo(title='Registrado', message='Você foi registrado com sucesso!')
+
+        self.frame_pageregister.pack_forget()
+        #volta para pagina principal
+        self.home_page = App()
+        self.home_page
+    
 
 
 root = Tk()
