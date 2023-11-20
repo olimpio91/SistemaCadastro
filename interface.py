@@ -135,6 +135,7 @@ class App:
         password = self.entry_password.get()
         c = usuarios.Users()
         c.check(user, password)
+        self.warning = messagebox.showinfo(title='', message='Logado com sucesso!')
         
 root = Tk()
 root.geometry('300x220')
