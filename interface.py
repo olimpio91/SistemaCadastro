@@ -104,7 +104,11 @@ class App:
         self.homepage = Button(self.frame6_pageregister, text='HOME PAGE', command=self.home_page)
         self.homepage.pack(side=LEFT)
 
-    
+
+    def main_page(self):
+        self.frame.pack_forget()
+        self.frame_main_page = Frame(root)
+
 
     def home_page(self):
 
@@ -136,8 +140,9 @@ class App:
         c = usuarios.Users()
         c.check(user, password)
         self.warning = messagebox.showinfo(title='', message='Logado com sucesso!')
+        self.main_page()
         
 root = Tk()
-root.geometry('300x220')
+#root.geometry('300x220')
 App(root)
 root.mainloop()
