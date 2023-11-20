@@ -130,8 +130,11 @@ class App:
         self.home_page
 
     def message(self):
+
+        user = self.user_entry.get()
+        password = self.entry_password.get()
         c = usuarios.Users()
-        c.check(user_entry=self.user_entry, password_entry=self.entry_password)
+        c.check(user, password)
         
 root = Tk()
 root.geometry('300x220')
