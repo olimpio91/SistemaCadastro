@@ -16,9 +16,11 @@ class Users:
         response = self.c.cur.fetchall()
 
         for users in response:
+            
             if (user,password) == users:
-                return print('encontrado')
-        return print('não encontrado')
+                return True
+            
+        return False
             
 
 if __name__ == '__main__':

@@ -48,60 +48,58 @@ class App:
 
         self.frame.pack_forget()
 
-        self.frame_pageregister = Frame(root)
-        self.frame_pageregister.pack()
+        self.frame = Frame(root)
+        self.frame.pack()
 
-        self.frame1_pageregister = Frame(self.frame_pageregister)
-        self.frame1_pageregister.pack()
+        self.frame1 = Frame(self.frame)
+        self.frame1.pack()
 
-        self.frame2_pageregister = Frame(self.frame_pageregister)
-        self.frame2_pageregister.pack()
+        self.frame2 = Frame(self.frame)
+        self.frame2.pack()
 
-        self.frame3_pageregister = Frame(self.frame_pageregister)
-        self.frame3_pageregister.pack()
+        self.frame3 = Frame(self.frame)
+        self.frame3.pack()
         
-        self.frame4_pageregister = Frame(self.frame_pageregister)
-        self.frame4_pageregister.pack()
+        self.frame4 = Frame(self.frame)
+        self.frame4.pack()
 
-        self.frame5_pageregister = Frame(self.frame_pageregister)
-        self.frame5_pageregister.pack()
+        self.frame5 = Frame(self.frame)
+        self.frame5.pack()
 
-        self.frame6_pageregister = Frame(self.frame_pageregister)
-        self.frame6_pageregister.pack()
+        self.frame6 = Frame(self.frame)
+        self.frame6.pack()
         
+        self.label_title = Label(self.frame1, text='REGISTER', font=('Roboto', 25))
+        self.label_title.pack()
 
-        #widgets
-        self.label_title_pgr = Label(self.frame1_pageregister, text='REGISTER', font=('Roboto', 25))
-        self.label_title_pgr.pack()
+        self.labeltext_entry_firstname = Label(self.frame2, text='FIRST NAME')
+        self.labeltext_entry_firstname.pack(side=LEFT)
 
-        self.labeltext_entry_firstname_pgr = Label(self.frame2_pageregister, text='FIRST NAME')
-        self.labeltext_entry_firstname_pgr.pack(side=LEFT)
+        self.entry_firstname = Entry(self.frame2, width=30)
+        self.entry_firstname.pack(padx=(0,40),pady=(5,5))
 
-        self.entry_firstname_pgr = Entry(self.frame2_pageregister, width=30)
-        self.entry_firstname_pgr.pack(padx=(0,40),pady=(5,5))
+        self.label_text_lastname = Label(self.frame3, text='LAST NAME')
+        self.label_text_lastname.pack(side=LEFT)
 
-        self.labeltext_lastname_pgr = Label(self.frame3_pageregister, text='LAST NAME')
-        self.labeltext_lastname_pgr.pack(side=LEFT)
+        self.entry_lastname = Entry(self.frame3, width=30)
+        self.entry_lastname.pack(padx=(0,37),pady=(5,5))
 
-        self.entry_lastname_pgr = Entry(self.frame3_pageregister, width=30)
-        self.entry_lastname_pgr.pack(padx=(0,37),pady=(5,5))
-
-        self.labeltext_user_pgr = Label(self.frame4_pageregister, text='USER')
+        self.labeltext_user_pgr = Label(self.frame4, text='USER')
         self.labeltext_user_pgr.pack(side=LEFT)
 
-        self.entry_user_pgr = Entry(self.frame4_pageregister, width=30)
+        self.entry_user_pgr = Entry(self.frame4, width=30)
         self.entry_user_pgr.pack(padx=(0,2),pady=(5,5))
 
-        self.labeltext_password_pgr = Label(self.frame5_pageregister, text='PASSWORD')
+        self.labeltext_password_pgr = Label(self.frame5, text='PASSWORD')
         self.labeltext_password_pgr.pack(side=LEFT)
 
-        self.entry_password_pgr = Entry(self.frame5_pageregister, width=30)
+        self.entry_password_pgr = Entry(self.frame5, width=30)
         self.entry_password_pgr.pack(padx=(0,37),pady=(5,5))
 
-        self.enter_button_pgr = Button(self.frame6_pageregister, text='ENTER', command=self.insert_user)
+        self.enter_button_pgr = Button(self.frame6, text='ENTER', command=self.insert_user)
         self.enter_button_pgr.pack(side=LEFT, padx=(30,0))
     
-        self.homepage = Button(self.frame6_pageregister, text='HOME PAGE', command=self.home_page)
+        self.homepage = Button(self.frame6, text='HOME PAGE', command=self.home_page)
         self.homepage.pack(side=LEFT)
 
 
@@ -112,37 +110,48 @@ class App:
 
     def home_page(self):
 
-        self.frame_pageregister.pack_forget()
+        self.frame.pack_forget()
         App()
     
 
     def insert_user(self):
 
-        self.firstname = self.entry_firstname_pgr.get()
-        self.lastname = self.entry_lastname_pgr.get()
+        self.firstname = self.entry_firstname.get()
+        self.lastname = self.entry_lastname.get()
         self.user = self.entry_user_pgr.get()
         self.password = self.entry_password_pgr.get()
 
-        i = usuarios.Users()
-        i.insert_into(self.firstname,self.lastname,self.user,self.password)
+        response = usuarios.Users.insert_into(self.firstname,self.lastname,self.user,self.password)
 
-        self.warning = messagebox.showinfo(title='Registrado', message='Você foi registrado com sucesso!')
+        if response == True:
 
-        self.frame_pageregister.pack_forget()
-        #volta para pagina principal
-        self.home_page = App()
-        self.home_page
+            self.warning = messagebox.showinfo(title='', message='Você foi registrado com sucesso!')
+        
+            self.frame.pack_forget()
+            #volta para pagina principal
+            self.home_page()
+        
+        else:
+            self.warning = messagebox.showwarning()
 
     def message(self):
 
         user = self.user_entry.get()
         password = self.entry_password.get()
         c = usuarios.Users()
-        c.check(user, password)
-        self.warning = messagebox.showinfo(title='', message='Logado com sucesso!')
-        self.main_page()
+        response = c.check(user, password)
         
-root = Tk()
-#root.geometry('300x220')
-App(root)
-root.mainloop()
+        if response == True:
+
+            self.warning = messagebox.showinfo(title='', message='Logado com sucesso!')
+            self.main_page()
+        
+        else:
+
+            self.warning = messagebox.showinfo(title='', message='Usuario ou senha incorretos')
+
+if __name__ == '__main__':
+
+    root = Tk()
+    App(root)
+    root.mainloop()
