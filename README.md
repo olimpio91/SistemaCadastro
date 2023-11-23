@@ -1,2 +1,3 @@
 # SistemaCadastro
-Pondo em pratica conceitos de OOP e Banco de dados
+
+Pequeno Sistema de Cadastro com interface podendo se cadastrar e fazer login caso usuário tenha registro no banco de dados.
