@@ -33,7 +33,7 @@ class App:
         self.label_text_password_entry = Label(self.frame3, text='SENHA')
         self.label_text_password_entry.pack()
 
-        self.entry_password = Entry(self.frame3, width=25)
+        self.entry_password = Entry(self.frame3, width=25, show='*')
         self.entry_password.pack()
 
         self.enter_button = Button(self.frame4, text='ENTRAR',command=self.message)
@@ -92,7 +92,7 @@ class App:
         self.labeltext_password_pgr = Label(self.frame5, text='SENHA')
         self.labeltext_password_pgr.pack()
 
-        self.entry_password_pgr = Entry(self.frame5, width=30)
+        self.entry_password_pgr = Entry(self.frame5, width=30, show='*')
         self.entry_password_pgr.pack(pady=5)
 
         self.enter_button_pgr = Button(self.frame6, text='REGISTRAR', command=self.insert_user)
@@ -126,7 +126,7 @@ class App:
 
 
         else:
-            
+
             response = usuarios.Users()
             response = response.insert_into(firstname, lastname, user, password)
             
