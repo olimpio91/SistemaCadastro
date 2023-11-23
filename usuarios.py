@@ -11,6 +11,7 @@ class Users:
 
         self.c.cur.execute(f"SELECT COUNT(User) FROM Registered WHERE User == '{User}' GROUP BY User")
         response = self.c.cur.fetchall()
+        print(response)
         
         
         for tupla in response:
@@ -20,17 +21,17 @@ class Users:
                 if i >= 1:
                     return False
 
-            else:
-        
-                self.c.cur.execute("INSERT INTO Registered (FirstName, LastName, User, Password) VALUES(?,?,?,?)",(FirstName,LastName,User,PassWorld))
-                self.c.conn.commit()
-                
-                return True
+        else:
+    
+            self.c.cur.execute("INSERT INTO Registered (FirstName, LastName, User, Password) VALUES(?,?,?,?)",(FirstName,LastName,User,PassWorld))
+            self.c.conn.commit()
+            
+            return True
 
     def check(self, user, password):
         
-        self.c.cur.execute("SELECT User,PassWord FROM Registered")
-        response = self.c.cur.fetchall()
+        response = self.c.cur.execute("SELECT User,PassWord FROM Registered")
+        response = response.fetchall()
 
         for users in response:
             
@@ -42,4 +43,4 @@ class Users:
 
 if __name__ == '__main__':
     responde = Users()
-    responde.insert_into('kaua','trindade','olimpio','123')
+    responde.insert_into('Pedro','Silva','PedroSilva','123')
