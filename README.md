@@ -5,4 +5,4 @@ Pequeno Sistema de Cadastro com interface podendo se cadastrar e fazer login cas
 ## Página de Login
 Essa é a página inicial que será exibida após rodar o codigo, com as entradas podendo inserir seu usuário e senha caso já tenha feito um cadastro.
 
-![](image\Capturalogin.png)
+![](Capturalogin.png)
