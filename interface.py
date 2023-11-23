@@ -121,25 +121,26 @@ class App:
         self.user = self.entry_user_pgr.get()
         self.password = self.entry_password_pgr.get()
 
-        response = usuarios.Users.insert_into(self.firstname,self.lastname,self.user,self.password)
+        response = usuarios.Users()
+        response = response.insert_into(self.firstname,self.lastname,self.user,self.password)
+    
+        if response == False:
 
-        if response == True:
+            self.warning = messagebox.showinfo(title='', message='Nome de usuario já em uso')
 
+        else:
             self.warning = messagebox.showinfo(title='', message='Você foi registrado com sucesso!')
         
             self.frame.pack_forget()
-            #volta para pagina principal
             self.home_page()
-        
-        else:
-            self.warning = messagebox.showwarning()
+    
 
     def message(self):
 
         user = self.user_entry.get()
         password = self.entry_password.get()
-        c = usuarios.Users()
-        response = c.check(user, password)
+        response = usuarios.Users()
+        response = response.check(user, password)
         
         if response == True:
 

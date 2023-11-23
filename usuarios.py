@@ -1,14 +1,31 @@
 import database
 
+
 class Users:
     def __init__(self):
 
         self.c = database.DataBase()
 
+
     def insert_into (self, FirstName, LastName, User, PassWorld):
+
+        self.c.cur.execute(f"SELECT COUNT(User) FROM Registered WHERE User == '{User}' GROUP BY User")
+        response = self.c.cur.fetchall()
         
-        self.c.cur.execute("INSERT INTO Registered (FirstName, LastName, User, Password) VALUES(?,?,?,?)",(FirstName,LastName,User,PassWorld))
-        self.c.conn.commit()
+        
+        for tupla in response:
+            
+            for i in tupla:
+                
+                if i >= 1:
+                    return False
+
+            else:
+        
+                self.c.cur.execute("INSERT INTO Registered (FirstName, LastName, User, Password) VALUES(?,?,?,?)",(FirstName,LastName,User,PassWorld))
+                self.c.conn.commit()
+                
+                return True
 
     def check(self, user, password):
         
@@ -25,4 +42,4 @@ class Users:
 
 if __name__ == '__main__':
     responde = Users()
-    responde.check('olimpio','123')
+    responde.insert_into('kaua','trindade','olimpio','123')
